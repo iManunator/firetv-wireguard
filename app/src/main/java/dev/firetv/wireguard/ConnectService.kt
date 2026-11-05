@@ -23,7 +23,7 @@ class ConnectService : Service() {
         val app = application as App
         app.tunnel.setUp(true) { ok ->
             Log.i(TAG, "Auto-connect: ${if (ok) "up" else app.tunnel.lastError}")
-            stopForeground(STOP_FOREGROUND_REMOVE)
+            stopForegroundCompat()
             stopSelf(startId)
         }
         return START_NOT_STICKY

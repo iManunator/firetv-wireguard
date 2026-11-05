@@ -62,7 +62,7 @@ class ImportActivity : Activity() {
         app.prefs.configText = normalized
         runOnUiThread {
             status.setText(R.string.import_ok)
-            status.setTextColor(getColor(R.color.ok))
+            status.setTextColor(colorOf(R.color.ok))
             app.tunnel.reapplyIfUp()
             status.postDelayed({ finish() }, 1500)
         }

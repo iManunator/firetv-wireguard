@@ -110,22 +110,22 @@ class MainActivity : Activity() {
         when {
             cfg == null -> {
                 status.setText(R.string.status_no_config)
-                status.setTextColor(getColor(R.color.muted))
+                status.setTextColor(colorOf(R.color.muted))
                 connect.setText(R.string.import_config)
             }
             tunnel.busy -> {
                 status.setText(if (up) R.string.status_disconnecting else R.string.status_connecting)
-                status.setTextColor(getColor(R.color.warn))
+                status.setTextColor(colorOf(R.color.warn))
                 connect.setText(if (up) R.string.disconnect else R.string.connect)
             }
             up -> {
                 status.setText(R.string.status_connected)
-                status.setTextColor(getColor(R.color.ok))
+                status.setTextColor(colorOf(R.color.ok))
                 connect.setText(R.string.disconnect)
             }
             else -> {
                 status.setText(R.string.status_disconnected)
-                status.setTextColor(getColor(R.color.muted))
+                status.setTextColor(colorOf(R.color.muted))
                 connect.setText(R.string.connect)
             }
         }
@@ -160,6 +160,8 @@ class MainActivity : Activity() {
                 val ago = (System.currentTimeMillis() - handshake) / 1000
                 sb.append("Handshake: ${ago}s ago")
                 if (ago > 180) sb.append("  ⚠ server not responding")
+            } else if (stats.totalTx() == 0L) {
+                sb.append("Handshake: idle (starts when an app sends traffic)")
             } else if (System.currentTimeMillis() - app.tunnel.upSince > 10_000) {
                 sb.append("Handshake: none ⚠ check Endpoint, UDP port forward, keys")
             } else {
