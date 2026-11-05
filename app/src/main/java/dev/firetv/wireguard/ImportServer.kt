@@ -17,7 +17,7 @@ import kotlin.concurrent.thread
  */
 class ImportServer(private val onConfig: (String) -> String?) {
     val token: String = SecureRandom().let { rnd ->
-        (1..8).map { TOKEN_ALPHABET[rnd.nextInt(TOKEN_ALPHABET.length)] }.joinToString("")
+        (1..16).map { TOKEN_ALPHABET[rnd.nextInt(TOKEN_ALPHABET.length)] }.joinToString("")
     }
 
     private var server: ServerSocket? = null

@@ -20,7 +20,7 @@ Vega OS devices, such as the Fire TV Stick 4K Select (2025), cannot run Android 
 
 ## Install
 
-Download `WireGuardTV-1.0.0.apk` from the [releases](https://github.com/iManunator/firetv-wireguard/releases) page.
+Download `WireGuardTV-1.0.1.apk` from the [releases](https://github.com/iManunator/firetv-wireguard/releases) page.
 
 On the Fire TV, allow apps from unknown sources: **Settings → My Fire TV → Developer options → Install unknown apps**, and enable it for the app you install with (Downloader, or adb).
 
@@ -34,7 +34,7 @@ On the Fire TV, allow apps from unknown sources: **Settings → My Fire TV → D
 
 ```bash
 adb connect <fire-tv-ip>:5555
-adb install -r WireGuardTV-1.0.0.apk
+adb install -r WireGuardTV-1.0.1.apk
 ```
 
 Turn on ADB debugging under **Settings → My Fire TV → Developer options**. If that menu is missing, open **Settings → My Fire TV → About** and click the device name seven times.
@@ -90,6 +90,10 @@ Create the key once with `keytool -genkeypair`. Keep `keystore/release.jks`. An 
 
 The tunnel itself is the [WireGuard Android](https://github.com/WireGuard/wireguard-android) `tunnel` library (Apache-2.0). QR codes use ZXing.
 
+## What is not in this repository
+
+No WireGuard config, private key, preshared key, signing key, keystore password, or API token is committed. `keystore.properties`, `keystore/`, `local.properties`, `*.conf`, and `*.apk` are gitignored. The import token is created with `SecureRandom` each time the import screen opens and is never saved.
+
 ## License
 
-Source in this repository is private. The WireGuard tunnel library keeps its own Apache-2.0 license.
+This app's source is [MIT](LICENSE). The WireGuard tunnel library keeps its own Apache-2.0 license.
