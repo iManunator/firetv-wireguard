@@ -7,3 +7,5 @@ local.properties
 *.conf
 shots/
 *.apk
+keystore.properties
+keystore/

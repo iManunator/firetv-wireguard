@@ -3,6 +3,7 @@ package dev.firetv.wireguard
 import java.io.BufferedInputStream
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
+import java.net.InetAddress
 import java.net.InetSocketAddress
 import java.net.ServerSocket
 import java.net.Socket
@@ -22,9 +23,20 @@ class ImportServer(private val onConfig: (String) -> String?) {
     private var server: ServerSocket? = null
     val port: Int get() = server?.localPort ?: 0
 
-    fun start() {
-        val s = runCatching { ServerSocket().apply { reuseAddress = true; bind(InetSocketAddress(PREFERRED_PORT)) } }
-            .getOrElse { ServerSocket(0) }
+    fun start(bindHost: String) {
+        val address = InetAddress.getByName(bindHost)
+        val s = ServerSocket()
+        try {
+            s.reuseAddress = true
+            try {
+                s.bind(InetSocketAddress(address, PREFERRED_PORT))
+            } catch (_: Exception) {
+                s.bind(InetSocketAddress(address, 0))
+            }
+        } catch (e: Exception) {
+            s.close()
+            throw e
+        }
         server = s
         thread(name = "import-server", isDaemon = true) {
             while (!s.isClosed) {
@@ -74,6 +86,7 @@ class ImportServer(private val onConfig: (String) -> String?) {
                     if (n < 0) break
                     read += n
                 }
+                if (read != contentLength) return respond(socket, 400, "text/plain", "Upload was interrupted")
                 val error = onConfig(String(body, 0, read, Charsets.UTF_8))
                 if (error == null) respond(socket, 200, "text/plain", "Imported! You can now connect on the TV.")
                 else respond(socket, 400, "text/plain", error)

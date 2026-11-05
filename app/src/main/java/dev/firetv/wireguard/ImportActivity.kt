@@ -35,7 +35,7 @@ class ImportActivity : Activity() {
         }
         val s = ImportServer(::onConfigReceived)
         try {
-            s.start()
+            s.start(ip)
         } catch (e: Exception) {
             url.text = getString(R.string.server_failed, e.message)
             return

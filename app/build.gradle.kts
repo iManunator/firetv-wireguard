@@ -1,6 +1,13 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+}
+
+val keystoreProps = Properties().apply {
+    val file = rootProject.file("keystore.properties")
+    if (file.exists()) file.inputStream().use { load(it) }
 }
 
 android {
@@ -11,14 +18,24 @@ android {
         applicationId = "dev.firetv.wireguard"
         minSdk = 22
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.0.0"
+    }
+
+    signingConfigs {
+        create("release") {
+            if (keystoreProps.isEmpty) return@create
+            storeFile = rootProject.file(keystoreProps.getProperty("storeFile"))
+            storePassword = keystoreProps.getProperty("storePassword")
+            keyAlias = keystoreProps.getProperty("keyAlias")
+            keyPassword = keystoreProps.getProperty("keyPassword")
+        }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 

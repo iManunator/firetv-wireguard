@@ -37,6 +37,17 @@ class TunnelController(private val context: Context, private val prefs: Prefs) {
         }
     }
 
+    init {
+        executor.execute {
+            val known = runCatching { backend.getState(tunnel) }.getOrDefault(Tunnel.State.DOWN)
+            if (known == Tunnel.State.UP) {
+                state = known
+                upSince = System.currentTimeMillis()
+                notifyListeners()
+            }
+        }
+    }
+
     fun addListener(l: () -> Unit) = listeners.add(l)
     fun removeListener(l: () -> Unit) = listeners.remove(l)
 
@@ -119,7 +130,12 @@ class TunnelController(private val context: Context, private val prefs: Prefs) {
         /** Returns null if valid, otherwise a human readable error. */
         fun validate(text: String): String? = try {
             val c = parse(text)
-            if (c.peers.isEmpty()) "Config has no [Peer] section" else null
+            when {
+                c.`interface`.addresses.isEmpty() -> "Interface has no Address"
+                c.peers.isEmpty() -> "Config has no [Peer] section"
+                c.peers.any { it.endpoint.orElse(null) == null } -> "A [Peer] has no Endpoint"
+                else -> null
+            }
         } catch (e: BadConfigException) {
             "Invalid ${e.section} ${e.location}: ${e.reason}" + (e.text?.let { " ('$it')" } ?: "")
         } catch (e: Exception) {

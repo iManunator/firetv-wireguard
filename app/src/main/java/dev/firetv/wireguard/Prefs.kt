@@ -9,7 +9,9 @@ class Prefs(context: Context) {
 
     var configText: String?
         get() = sp.getString("config", null)
-        set(v) = sp.edit().putString("config", v).apply()
+        set(v) {
+            sp.edit().putString("config", v).commit()
+        }
 
     var autoConnect: Boolean
         get() = sp.getBoolean("auto_connect", true)
