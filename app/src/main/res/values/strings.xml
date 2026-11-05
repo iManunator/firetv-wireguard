@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WireGuard TV</string>
+
+    <string name="status_no_config">No configuration</string>
+    <string name="status_connected">Connected</string>
+    <string name="status_disconnected">Disconnected</string>
+    <string name="status_connecting">Connecting…</string>
+    <string name="status_disconnecting">Disconnecting…</string>
+    <string name="no_config_hint">Import your WireGuard config from your phone to get started.</string>
+
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="import_config">Import config</string>
+    <string name="import_from_phone">Import from phone</string>
+    <string name="auto_on">Auto-connect on boot: On</string>
+    <string name="auto_off">Auto-connect on boot: Off</string>
+    <string name="split_all">Split tunneling: Off</string>
+    <string name="split_exclude">Split tunneling: %1$d excluded</string>
+    <string name="split_include">Split tunneling: only %1$d apps</string>
+    <string name="footer">Use the remote to navigate. Settings apply immediately.</string>
+
+    <string name="import_title">Scan with your phone</string>
+    <string name="import_steps">1. Connect your phone to the same Wi-Fi as this Fire TV.\n2. Scan the QR code with the camera.\n3. Upload or paste your .conf file and press Send.</string>
+    <string name="import_url_label">Or open this address in a browser on your network:</string>
+    <string name="import_waiting">Waiting for config…</string>
+    <string name="import_ok">Config imported ✓</string>
+    <string name="import_error">Rejected: %1$s</string>
+    <string name="no_network">This Fire TV is not connected to a network.</string>
+    <string name="server_failed">Could not start import server: %1$s</string>
+    <string name="back">Back</string>
+
+    <string name="split_title">Split tunneling</string>
+    <string name="mode_all">All apps use VPN</string>
+    <string name="mode_exclude">Exclude selected</string>
+    <string name="mode_include">Only selected</string>
+    <string name="split_hint_all">All traffic goes through the VPN.</string>
+    <string name="split_hint_exclude">Checked apps bypass the VPN. Everything else uses it.</string>
+    <string name="split_hint_include">Only checked apps use the VPN. Everything else goes direct.</string>
+</resources>
