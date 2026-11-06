@@ -49,6 +49,12 @@
             android:screenOrientation="landscape" />
 
         <activity
+            android:name=".ManualImportActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
             android:name=".AppsActivity"
             android:exported="false"
             android:screenOrientation="landscape" />

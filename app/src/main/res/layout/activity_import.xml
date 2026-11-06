@@ -68,12 +68,27 @@
             android:textColor="@color/warn"
             android:textSize="22sp" />
 
-        <Button
-            android:id="@+id/back"
-            style="@style/TvButton"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="@string/back" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/manual"
+                style="@style/TvButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enter_manually"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/back"
+                style="@style/TvButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/back" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
