@@ -10,7 +10,7 @@ If it saves you some hassle, you can [buy me a coffee](https://ko-fi.com/imanuna
 
 ## What it does
 
-- **Import from your phone.** The TV runs a small page on your Wi-Fi. The QR code opens it. Paste the config or pick the file. If nothing arrives after a few seconds, **QR not working? Enter manually** appears and opens the keyboard so you can paste or type the `.conf` with the remote app. Broken configs are rejected before they are saved.
+- **Import from your phone.** The TV runs a small page on your Wi-Fi. The QR code opens it. Paste the config or pick the file. If nothing arrives after a few seconds, **QR not working? Enter manually** appears. You can paste or type with the remote app keyboard, or **Choose file** if the `.conf` is already on the TV (needs a file manager such as X-plore). Broken configs are rejected before they are saved.
 - **Remote-friendly screen.** One Connect button, plus server, address, traffic, and handshake age. The focused button has a white outline.
 - **Split tunneling.** Send every app through the VPN, leave some apps out, or send only the ones you pick.
 - **Auto-connect.** Comes back up after a reboot, and after the app updates. Fire OS blocks a background app from starting a VPN, so boot uses a short foreground service.

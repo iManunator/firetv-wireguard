@@ -31,10 +31,16 @@
     <string name="server_failed">Could not start import server: %1$s</string>
     <string name="enter_manually">QR not working? Enter manually</string>
     <string name="manual_title">Paste WireGuard config</string>
-    <string name="manual_steps">Paste or type your WireGuard .conf here. Use the Fire TV / Google TV remote app keyboard, then press Save.</string>
+    <string name="manual_steps">Paste or type your WireGuard .conf here with the remote app keyboard, or choose a .conf file already on this TV (for example from Download). Then press Save.</string>
     <string name="manual_hint">[Interface]\nPrivateKey = …\nAddress = …\n\n[Peer]\nPublicKey = …\nEndpoint = …</string>
+    <string name="choose_file">Choose file</string>
     <string name="save_config">Save</string>
-    <string name="manual_empty">Paste or type a WireGuard config first.</string>
+    <string name="manual_empty">Paste, type, or choose a WireGuard config first.</string>
+    <string name="file_picker_missing">No file manager can open files. Install X-plore or another file manager, then try again.</string>
+    <string name="file_read_failed">Could not read that file.</string>
+    <string name="file_empty">That file is empty.</string>
+    <string name="file_too_large">That file is too large (max 64 KiB).</string>
+    <string name="file_loaded">File loaded. Press Save to import.</string>
     <string name="back">Back</string>
 
     <string name="split_title">Split tunneling</string>
