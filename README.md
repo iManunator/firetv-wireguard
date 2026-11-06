@@ -20,22 +20,25 @@ Vega OS devices, such as the Fire TV Stick 4K Select (2025), cannot run Android 
 
 ## Install
 
-Download `WireGuardTV-1.0.3.apk` from the [releases](https://github.com/iManunator/firetv-wireguard/releases) page.
+Always use this link. It points at the newest APK and does not change when versions update:
+
+**https://github.com/iManunator/firetv-wireguard/releases/latest/download/WireGuardTV.apk**
 
 On the Fire TV, allow apps from unknown sources: **Settings → My Fire TV → Developer options → Install unknown apps**, and enable it for the app you install with (Downloader, or adb).
 
 **Downloader**
 
 1. Install **Downloader** from the Amazon Appstore.
-2. Open the release page on a computer and copy the APK link, or host the file on your network.
-3. Paste the address in Downloader and install.
+2. Paste the link above and install. The same link works for every future update.
 
 **adb**
 
 ```bash
 adb connect <fire-tv-ip>:5555
-adb install -r WireGuardTV-1.0.3.apk
+adb install -r WireGuardTV.apk
 ```
+
+Installing over an older WireGuard TV build updates it in place (same package name and signing key). Your imported config is kept.
 
 Turn on ADB debugging under **Settings → My Fire TV → Developer options**. If that menu is missing, open **Settings → My Fire TV → About** and click the device name seven times.
 
