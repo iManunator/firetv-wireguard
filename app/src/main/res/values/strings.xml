@@ -31,12 +31,9 @@
     <string name="server_failed">Could not start import server: %1$s</string>
     <string name="enter_manually">QR not working? Enter manually</string>
     <string name="manual_title">Paste WireGuard config</string>
-    <string name="manual_steps">Copy the .conf text on your phone, then paste it here with the Fire TV / Google TV remote app, or press Paste from clipboard if it is already on this device.</string>
+    <string name="manual_steps">Paste or type your WireGuard .conf here. Use the Fire TV / Google TV remote app keyboard, then press Save.</string>
     <string name="manual_hint">[Interface]\nPrivateKey = …\nAddress = …\n\n[Peer]\nPublicKey = …\nEndpoint = …</string>
-    <string name="paste_clipboard">Paste from clipboard</string>
     <string name="save_config">Save</string>
-    <string name="clipboard_empty">Clipboard is empty. Copy the config on your phone, then paste with the remote app.</string>
-    <string name="clipboard_pasted">Pasted from clipboard. Press Save to import.</string>
     <string name="manual_empty">Paste or type a WireGuard config first.</string>
     <string name="back">Back</string>
 

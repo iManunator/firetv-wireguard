@@ -10,7 +10,7 @@ If it saves you some hassle, you can [buy me a coffee](https://ko-fi.com/imanuna
 
 ## What it does
 
-- **Import from your phone.** The TV runs a small page on your Wi-Fi. The QR code opens it. Paste the config or pick the file. If nothing arrives after a few seconds, **QR not working? Enter manually** appears so you can paste the `.conf` text with the remote app or from the clipboard. Broken configs are rejected before they are saved.
+- **Import from your phone.** The TV runs a small page on your Wi-Fi. The QR code opens it. Paste the config or pick the file. If nothing arrives after a few seconds, **QR not working? Enter manually** appears and opens the keyboard so you can paste or type the `.conf` with the remote app. Broken configs are rejected before they are saved.
 - **Remote-friendly screen.** One Connect button, plus server, address, traffic, and handshake age. The focused button has a white outline.
 - **Split tunneling.** Send every app through the VPN, leave some apps out, or send only the ones you pick.
 - **Auto-connect.** Comes back up after a reboot, and after the app updates. Fire OS blocks a background app from starting a VPN, so boot uses a short foreground service.
@@ -20,7 +20,7 @@ Vega OS devices, such as the Fire TV Stick 4K Select (2025), cannot run Android 
 
 ## Install
 
-Download `WireGuardTV-1.0.2.apk` from the [releases](https://github.com/iManunator/firetv-wireguard/releases) page.
+Download `WireGuardTV-1.0.3.apk` from the [releases](https://github.com/iManunator/firetv-wireguard/releases) page.
 
 On the Fire TV, allow apps from unknown sources: **Settings → My Fire TV → Developer options → Install unknown apps**, and enable it for the app you install with (Downloader, or adb).
 
@@ -34,7 +34,7 @@ On the Fire TV, allow apps from unknown sources: **Settings → My Fire TV → D
 
 ```bash
 adb connect <fire-tv-ip>:5555
-adb install -r WireGuardTV-1.0.2.apk
+adb install -r WireGuardTV-1.0.3.apk
 ```
 
 Turn on ADB debugging under **Settings → My Fire TV → Developer options**. If that menu is missing, open **Settings → My Fire TV → About** and click the device name seven times.

@@ -1,10 +1,11 @@
 package dev.firetv.wireguard
 
 import android.app.Activity
-import android.content.ClipboardManager
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -17,11 +18,11 @@ class ManualImportActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
         setContentView(R.layout.activity_manual_import)
         field = findViewById(R.id.config_text)
         status = findViewById(R.id.manual_status)
 
-        findViewById<Button>(R.id.paste).setOnClickListener { pasteFromClipboard() }
         findViewById<Button>(R.id.save).setOnClickListener { save() }
         findViewById<Button>(R.id.back).setOnClickListener { finish() }
 
@@ -31,23 +32,19 @@ class ManualImportActivity : Activity() {
             !shared.isNullOrBlank() -> field.setText(shared)
             app.prefs.configText != null -> field.setText(app.prefs.configText)
         }
-        findViewById<Button>(R.id.paste).requestFocus()
-    }
-
-    companion object {
-        const val EXTRA_CONFIG = "config"
-    }
-
-    private fun pasteFromClipboard() {
-        val clip = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-        val text = clip.primaryClip?.takeIf { it.itemCount > 0 }?.getItemAt(0)?.coerceToText(this)?.toString()
-        if (text.isNullOrBlank()) {
-            showStatus(getString(R.string.clipboard_empty), error = true)
-            return
-        }
-        field.setText(text)
         field.setSelection(field.text.length)
-        showStatus(getString(R.string.clipboard_pasted), error = false)
+        field.requestFocus()
+        field.post { showKeyboard() }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (::field.isInitialized && field.hasFocus()) field.post { showKeyboard() }
+    }
+
+    private fun showKeyboard() {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(field, InputMethodManager.SHOW_FORCED)
     }
 
     private fun save() {
@@ -70,5 +67,9 @@ class ManualImportActivity : Activity() {
         status.visibility = View.VISIBLE
         status.text = message
         status.setTextColor(colorOf(if (error) R.color.error else R.color.ok))
+    }
+
+    companion object {
+        const val EXTRA_CONFIG = "config"
     }
 }
